@@ -8,8 +8,11 @@ A quick overview about the players that have tokens placed on the currently acti
 
 - Current and maximum hitpoints
 - Armor Class
-- Passives: Perception, Investigation and Insight
-- On a second tab: All languages your players might know and which one of them can speak said language
+- Passives: Perception, Investigation, Insight, Psionics, Nature, Mysteriums, History
+- Speed
+- Psi Points & Psi Limit
+- Stats and Saves
+- Inspiration
 
 Using filters, you can hide and show players to your hearts desire, to quickly get the information you need in the heat of the battle.
 

@@ -1,30 +1,30 @@
-div.party-overview nav.tabs {
+div.pergasha-party-overview nav.tabs {
   display: flex;
   flex-direction: row;
 }
 
-div.party-overview nav li {
+div.pergasha-party-overview nav li {
   display: inline-block;
   list-style-type: none;
 }
 
-div.party-overview nav .item {
+div.pergasha-party-overview nav .item {
   color: gray;
 }
 
-div.party-overview nav .item.active {
+div.pergasha-party-overview nav .item.active {
   color: black;
   border-bottom: 2px solid #782e22;
   text-shadow: none;
 }
 
-#party-overview-button {
+#pergasha-party-overview-button {
   display: block;
   flex: 0 0 32px;
   height: 32px;
 }
 
-div.party-overview .table-row {
+div.pergasha-party-overview .table-row {
   display: flex;
   display: -webkit-flex;
   flex-direction: row;
@@ -36,23 +36,23 @@ div.party-overview .table-row {
   width: 100%;
 }
 
-div.party-overview .table-row span.note {
+div.pergasha-party-overview .table-row span.note {
   font-size: 0.6rem;
   color: green;
   font-weight: bold;
   line-height: 18pt;
 }
 
-div.party-overview .table-row span.adjusted {
+div.pergasha-party-overview .table-row span.adjusted {
   color: green;
   font-weight: bold;
 }
 
-div.party-overview .table-row:nth-child(2n) {
+div.pergasha-party-overview .table-row:nth-child(2n) {
   background-color: rgb(228, 228, 228);
 }
 
-div.party-overview .table-row .text {
+div.pergasha-party-overview .table-row .text {
   margin: auto;
   flex-grow: 2;
   overflow: hidden;
@@ -62,17 +62,17 @@ div.party-overview .table-row .text {
   flex-basis: 50px;
 }
 
-div.party-overview .table-row .text.icon {
+div.pergasha-party-overview .table-row .text.icon {
   text-align: center;
 }
 
-div.party-overview .table-row .text.background {
+div.pergasha-party-overview .table-row .text.background {
   white-space: pre-wrap;
   text-align: left;
   vertical-align: top;
 }
 
-div.party-overview .table-row .num {
+div.pergasha-party-overview .table-row .num {
   margin: auto;
   text-align: center;
   flex-basis: 50px;
@@ -80,7 +80,7 @@ div.party-overview .table-row .num {
   flex-shrink: 1;
 }
 
-div.party-overview .table-row .button {
+div.pergasha-party-overview .table-row .button {
   margin: auto;
   text-align: center;
   flex-basis: 70px;
@@ -92,20 +92,20 @@ div.party-overview .table-row .button {
   * General good-look styles, not mandatory.
   */
 
-div.party-overview .table-row {
+div.pergasha-party-overview .table-row {
   border-bottom: 1px solid rgb(190, 190, 190);
   border-collapse: collapse;
   padding: 4px;
 }
 
-div.party-overview .table-row.header {
+div.pergasha-party-overview .table-row.header {
   font-weight: bold;
 }
 
-div.party-overview.wfrp4e .table-row .button {
+div.pergasha-party-overview.wfrp4e .table-row .button {
   margin-right: 6px;
 }
-div.party-overview.wfrp4e .table-row .button button {
+div.pergasha-party-overview.wfrp4e .table-row .button button {
   margin: 0px 5px 6px 5px !important;
   padding: 2px 0px 0px 0px;
   height: 34px;
@@ -123,10 +123,10 @@ div.party-overview.wfrp4e .table-row .button button {
   text-shadow: 0px 0px 1px #00000063;
 }
 
-div.party-overview.wfrp4e .table-row:nth-child(2n) {
+div.pergasha-party-overview.wfrp4e .table-row:nth-child(2n) {
   background-color: rgba(228, 228, 228, 0.34);
 }
-#party-overview-button.wfrp4e {
+#pergasha-party-overview-button.wfrp4e {
   display: block;
   flex: 0 0 32px;
   height: 32px;
@@ -146,4 +146,16 @@ div.party-overview.wfrp4e .table-row:nth-child(2n) {
   font-size: 12px;
   font-weight: 500;
   text-shadow: 0px 0px 1px #00000063;
+}
+
+.fa-stack {
+        font-size: 0.7em;
+    }
+
+.fa-stack i {
+        vertical-align: middle;
+    }
+
+.window-app{
+  min-width: 550px;
 }

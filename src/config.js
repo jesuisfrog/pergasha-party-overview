@@ -1,6 +1,6 @@
 const config = {
-  name: "Party Overview",
-  version: "2.4.1",
+  name: "Pergasha Party Overview",
+  version: "1.0.0",
 };
 
 export default config;

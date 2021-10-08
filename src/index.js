@@ -13,7 +13,7 @@ Hooks.once("init", () => {
   /**
    * Register settings
    */
-   [
+  [
     {
       name: "EnablePlayerAccess",
       scope: "world",
@@ -22,15 +22,15 @@ Hooks.once("init", () => {
     },
   ].forEach((setting) => {
     let options = {
-      name: game.i18n.localize(`party-overview.${setting.name}.Name`),
-      hint: game.i18n.localize(`party-overview.${setting.name}.Hint`),
+      name: game.i18n.localize(`pergasha-party-overview.${setting.name}.Name`),
+      hint: game.i18n.localize(`pergasha-party-overview.${setting.name}.Hint`),
       scope: setting.scope,
       config: true,
       default: setting.default,
       type: setting.type,
     };
     if (setting.choices) options.choices = setting.choices;
-    game.settings.register("party-overview", setting.name, options);
+    game.settings.register("pergasha-party-overview", setting.name, options);
   });
 });
 
@@ -40,11 +40,11 @@ Hooks.on("ready", () => {
 });
 
 Hooks.on("renderActorDirectory", (app, html, data) => {
-  if (!game.user.isGM && !game.settings.get("party-overview", "EnablePlayerAccess"))
+  if (!game.user.isGM && !game.settings.get("pergasha-party-overview", "EnablePlayerAccess"))
     return;
 
   let button = $(
-    `<button id="party-overview-button" class="${game.system.id}">Party Overview</button>`
+    `<button id="pergasha-party-overview-button" class="${game.system.id}"><i class="fas fa-users"></i> Pergasha Party Overview</button>`
   );
   button.on("click", (e) => {
     party.render(true);

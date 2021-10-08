@@ -46,7 +46,7 @@ class PartyOverviewApp extends Application {
 
     let languages;
     let totalCurrency;
-    if (! SIMPLE_SYTEMS.includes(game.system.id)) {
+    if (!SIMPLE_SYTEMS.includes(game.system.id)) {
       // restructure the languages a bit so rendering gets easier
       languages = actors
         .reduce((languages, actor) => [...new Set(languages.concat(actor.languages))], [])
@@ -55,7 +55,7 @@ class PartyOverviewApp extends Application {
       actors = actors.map(actor => {
         return {
           ...actor,
-          languages: (actor.languages?(languages.map(language => actor.languages && actor.languages.includes(language))):[])
+          languages: (actor.languages ? (languages.map(language => actor.languages && actor.languages.includes(language))) : [])
         };
       });
       totalCurrency = actors.reduce(
@@ -76,16 +76,16 @@ class PartyOverviewApp extends Application {
       // summing up the total
     }
 
-	let totalPartyGP = actors.reduce((totalGP, actor) => totalGP + parseFloat(actor.totalGP), 0).toFixed(2);
+    let totalPartyGP = actors.reduce((totalGP, actor) => totalGP + parseFloat(actor.totalGP), 0).toFixed(2);
 
     this.state = {
       activeTab: this.activeTab,
       mode: this.displayMode,
-      name: "Sebastian",
+      name: "Michael",
       actors: actors,
       languages: languages,
       totalCurrency: totalCurrency,
-	  totalPartyGP: totalPartyGP,
+      totalPartyGP: totalPartyGP,
     };
   }
 
@@ -94,9 +94,9 @@ class PartyOverviewApp extends Application {
       width: 500,
       height: 300,
       resizable: true,
-      title: "Party Overview",
-      template: `/modules/party-overview/templates/${game.system.id}.hbs`,
-      classes: ["party-overview", game.system.id],
+      title: "Pergasha Party Overview",
+      template: `/modules/pergasha-party-overview/templates/${game.system.id}.hbs`,
+      classes: ["pergasha-party-overview", game.system.id],
       tabs: [
         {
           navSelector: ".tabs",
@@ -111,8 +111,8 @@ class PartyOverviewApp extends Application {
     this.update();
     return this.state;
   }
-  
-    getTotalGP(currency) {
+
+  getTotalGP(currency) {
     // summing up the total
     const calcOverflow = (currency, divider) => {
       return {
@@ -131,6 +131,77 @@ class PartyOverviewApp extends Application {
 
   getActorDetails(actor) {
     const data = actor.data.data;
+    //Pergasha
+    if (game.system.id === "pergashaFoundryvtt") {
+      const getHitpoints = hp => {
+        const value = parseInt(hp.value);
+        const max = parseInt(hp.max);
+        const tempValue = isNaN(parseInt(data.attributes.hp.temp)) ? 0 : parseInt(data.attributes.hp.temp);
+        const tempMaxValue = isNaN(parseInt(data.attributes.hp.tempmax)) ? 0 : parseInt(data.attributes.hp.tempmax);
+
+        return {
+          value: value,
+          max: max,
+          tempValue: tempValue,
+          tempMaxValue: tempMaxValue,
+          totalValue: value + tempValue,
+          totalMaxValue: max + tempMaxValue,
+        };
+      };
+
+      const getSpeed = move => {
+        let extra = [];
+        if (move.fly) extra.push(`${move.fly} ${move.units} fly`);
+        if (move.hover) extra.push("hover");
+        if (move.burrow) extra.push(`${move.burrow} ${move.units} burrow`);
+        if (move.swim) extra.push(`${move.swim} ${move.units} swim`);
+        if (move.climb) extra.push(`${move.climb} ${move.units} climb`);
+
+        let str = `${move.walk} ${move.units}`;
+        if (extra.length)
+          str += ` (${extra.join(", ")})`;
+
+        return str;
+      };
+
+      return {
+        id: actor.id,
+        isHidden: this.hiddenActors.includes(actor.id),
+        name: actor.name,
+        shortName: actor.name.split(/\s/).shift(),
+        shortestName:
+          actor.name.split(/\s/).shift().length > 10
+            ? actor.name.split(/\s/).shift().substr(0, 10) + "…"
+            : actor.name.split(/\s/).shift().substr(0, 10),
+        hp: getHitpoints(data.attributes.hp),
+        ac: data.attributes.ac.value ? data.attributes.ac.value : 10,
+        mentalAc: data.attributes.ac.mental ? data.attributes.ac.mental : 10,
+        psiPoints: data.attributes.psionics.psiPoints,
+        psiLimit: data.attributes.psionics.psiLimit,
+        speed: getSpeed(data.attributes.movement),
+        //Abilities and Saves
+        strength: data.abilities.str,
+        dexterity: data.abilities.dex,
+        constitution: data.abilities.con,
+        intelligence: data.abilities.int,
+        wisdom: data.abilities.wis,
+        charisma: data.abilities.cha,
+
+        // passive stuff
+        passives: {
+          perception: data.skills.prc.passive,
+          investigation: data.skills.inv.passive,
+          insight: data.skills.ins.passive,
+          history: data.skills.his.passive,
+          nature: data.skills.nat.passive,
+          mysteriums: data.skills.mys.passive,
+          psionics: data.skills.psi.passive,
+        },
+        // details
+        inspiration: data.attributes.inspiration
+      };
+    }
+
 
     if (game.system.id === "dnd5e") {
       const getHitpoints = hp => {
@@ -148,14 +219,14 @@ class PartyOverviewApp extends Application {
           totalMaxValue: max + tempMaxValue,
         };
       };
-      
+
       const getSpeed = move => {
         let extra = [];
-        if (move.fly)    extra.push(`${move.fly} ${move.units} fly`);
-        if (move.hover)  extra.push("hover");
+        if (move.fly) extra.push(`${move.fly} ${move.units} fly`);
+        if (move.hover) extra.push("hover");
         if (move.burrow) extra.push(`${move.burrow} ${move.units} burrow`);
-        if (move.swim)   extra.push(`${move.swim} ${move.units} swim`);
-        if (move.climb)  extra.push(`${move.climb} ${move.units} climb`);
+        if (move.swim) extra.push(`${move.swim} ${move.units} swim`);
+        if (move.climb) extra.push(`${move.climb} ${move.units} climb`);
 
         let str = `${move.walk} ${move.units}`;
         if (extra.length)
@@ -197,7 +268,7 @@ class PartyOverviewApp extends Application {
         languages: data.traits.languages.value.map(code => CONFIG.DND5E.languages[code]),
         alignment: data.details.alignment,
         currency: data.currency,
-		totalGP: this.getTotalGP(data.currency).toFixed(2),
+        totalGP: this.getTotalGP(data.currency).toFixed(2),
       };
     }
 
@@ -229,7 +300,7 @@ class PartyOverviewApp extends Application {
         },
 
         // details
-	      languages: (data.traits.languages?(data.traits.languages.value.map(code => CONFIG.PF2E.languages[code])):[]),
+        languages: (data.traits.languages ? (data.traits.languages.value.map(code => CONFIG.PF2E.languages[code])) : []),
       };
     }
 
@@ -289,8 +360,8 @@ class PartyOverviewApp extends Application {
         this.displayMode === DISPLAY_MODE.SHOW_ALL
           ? DISPLAY_MODE.SHOW_VISIBLE
           : this.displayMode === DISPLAY_MODE.SHOW_VISIBLE
-          ? DISPLAY_MODE.SHOW_HIDDEN
-          : DISPLAY_MODE.SHOW_ALL;
+            ? DISPLAY_MODE.SHOW_HIDDEN
+            : DISPLAY_MODE.SHOW_ALL;
       this.render(false);
     });
 

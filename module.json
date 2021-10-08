@@ -1,9 +1,9 @@
 {
-  "name": "party-overview",
-  "title": "Party Overview",
+  "name": "pergasha-party-overview",
+  "title": "Pergasha Party Overview",
   "description": "Provides an instant overview about vital stats of the players active in the current scene",
-  "version": "2.4.2",
-  "author": "Sebastian Will (vttassets@gmail.com), Chris Wachal (Zamrod#9326)",
+  "version": "1.0.0",
+  "author": "Michael Baglio",
   "minimumCoreVersion": "0.5.5",
   "compatibleCoreVersion": "0.7.9",
   "languages": [
@@ -11,29 +11,14 @@
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
-    },
-    {
-      "lang": "de",
-      "name": "Deutsch",
-      "path": "lang/de.json"
-    },
-    {
-      "lang": "pt-BR",
-      "name": "Português Brasileiro",
-      "path": "lang/pt-BR.json"
-    },
-    {
-      "lang": "es",
-      "name": "Español",
-      "path": "lang/es.json"
     }
   ],
-  "systems": ["dnd5e", "pf2e", "wfrp4e", "swade"],
+  "systems": ["dnd5e", "pf2e", "wfrp4e", "swade", "pergashaFoundryvtt"],
   "esmodules": ["./src/index.js"],
   "styles": ["./style/module-settings.css", "./style/party-overview.css", "./style/module-settings.css"],
   "packs": [],
-  "url": "http://github.com/League-of-Foundry-Developers/party-overview",
-  "bugs": "http://github.com/League-of-Foundry-Developers/party-overview/issues",
-  "manifest": "http://github.com/League-of-Foundry-Developers/party-overview/releases/latest/download/module.json",
-  "download": "http://github.com/League-of-Foundry-Developers/party-overview/releases/latest/download/module.zip"
+  "url": "https://github.com/jesuisfrog/pergasha-party-overview",
+  "bugs": "https://github.com/jesuisfrog/pergasha-party-overview/issues",
+  "manifest": "https://raw.githubusercontent.com/jesuisfrog/pergasha-party-overview/master/module.json",
+  "download": "https://github.com/jesuisfrog/pergasha-party-overview/raw/master/module.zip"
 }

@@ -1,0 +1,146 @@
+<div>
+    <nav class="tabs" data-group="party">
+        <li class="item" data-tab="general">General</li>
+        <li class="item" data-tab="knowledge">Knowledge</li>
+        <li class="item" data-tab="stats">Stats / Saves</li>
+    </nav>
+    <section class="content">
+        <div class="tab" data-tab="general" data-group="party">
+            <div class="table-row header">
+                <div class="button">
+                    <button class="btn-filter">
+                        <i class="fas fa-filter {{#ifEquals mode 'SHOW_ALL'}}inactive{{/ifEquals}}"></i>
+                        {{#ifEquals mode 'SHOW_VISIBLE' }}<i class="fas fa-eye"></i>{{/ifEquals}}
+                        {{#ifEquals mode 'SHOW_HIDDEN' }}<i class="fas fa-eye-slash"></i>{{/ifEquals}}
+                    </button>
+                </div>
+                <div class="text">Name</div>
+                <div class="num" title="Inspiration"><span>&#x1f340;</span></div>
+                <div class="num" title="Health"><i class="fas fa-heart"></i></div>
+                <div class="num" title="Armor Class"><i class="fas fa-shield-alt"></i></div>
+                <div class="num fa-stack" title="Mental Armor Class"><i class="far fa-circle fa-stack-2x"></i><i
+                        class="fas fa-brain fa-stack-1x"></i></div>
+                <div class="num" title="Speed"><i class="fas fa-running"></i></div>
+                <div class="num" title="Passive Perception"><i class="far fa-eye"></i></div>
+                <div class="num" title="Passive Investigation"><i class="fas fa-search"></i></div>
+                <div class="num" title="Passive Insight"><i class="fas fa-book-open"></i></div>
+            </div>
+
+            {{#each actors as | actor | }}
+            <div class="table-row">
+                <div class="button">
+                    <button class="btn-toggle-visibility" data-actor="{{actor.id }}">
+                        {{#if actor.isHidden }}<i class="value fas fa-eye-slash"></i>{{else}}<i
+                            class="value fas fa-eye"></i>{{/if}}
+                    </button>
+                </div>
+                <div class="text">{{ actor.shortestName }}</div>
+
+                <!--
+                {
+                    value: value,
+                    max: max,
+                    tempValue: tempValue,
+                    tempMaxValue: tempMaxValue,
+                    totalValue: value + tempValue,
+                    totalMaxValue = max + tempMaxValue
+                }
+                -->
+                <div class="num">{{actor.inspiration}}/3</div>
+                <div class="num">
+                    <span style="display: block; border-bottom: thin solid black">
+                        <span name="hpCurrent" class="{{#if actor.hp.tempValue }}adjusted{{/if}}"
+                            data-value="{{actor.hp.value}}" data-total="{{ actor.hp.totalValue }}"
+                            data-temp="{{actor.hp.tempValue}}">
+                            {{ actor.hp.totalValue }}</span>
+                    </span>
+                    <span style="display: block"><span name="hpMax" data-value="{{actor.hp.max}}"
+                            data-total="{{ actor.hp.totalMaxValue }}" data-temp="{{actor.hp.tempMaxValue}}"
+                            class="{{#if actor.hp.tempMaxValue }}adjusted{{/if}}">{{ actor.hp.totalMaxValue }}</span>
+                    </span>
+                </div>
+                <div class="num">{{ actor.ac }}</div>
+                <div class="num">{{ actor.mentalAc }}</div>
+                <div class="num">{{ actor.speed }}</div>
+                <div class="num">{{ actor.passives.perception }}</div>
+                <div class="num">{{ actor.passives.investigation }}</div>
+                <div class="num">{{ actor.passives.insight }}</div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="tab" data-tab="knowledge" data-group="party">
+            <div class="table-row header">
+                <div class="button">
+                    <button class="btn-filter">
+                        <i class="fas fa-filter {{#ifEquals mode 'SHOW_ALL'}}inactive{{/ifEquals}}"></i>
+                        {{#ifEquals mode 'SHOW_VISIBLE' }}<i class="fas fa-eye"></i>{{/ifEquals}}
+                        {{#ifEquals mode 'SHOW_HIDDEN' }}<i class="fas fa-eye-slash"></i>{{/ifEquals}}
+                    </button>
+                </div>
+                <div class="text">Name</div>
+                <div class="num" title="Passive History"><i class="fas fa-book"></i></div>
+                <div class="num" title="Passive Mysteriums"><i class="fas fa-hammer"></i></div>
+                <div class="num" title="Passive Nature"><i class="fas fa-tree"></i></div>
+                <div class="num" title="Passive Psionics"><i class="fas fa-brain"></i></div>
+            </div>
+
+            {{#each actors as | actor | }}
+            <div class="table-row">
+                <div class="button">
+                    <button class="btn-toggle-visibility" data-actor="{{actor.id }}">
+                        {{#if actor.isHidden }}<i class="value fas fa-eye-slash"></i>{{else}}<i
+                            class="value fas fa-eye"></i>{{/if}}
+                    </button>
+                </div>
+                <div class="text">{{ actor.shortestName }}</div>
+                <div class="num">{{ actor.passives.history }}</div>
+                <div class="num">{{ actor.passives.mysteriums }}</div>
+                <div class="num">{{ actor.passives.nature }}</div>
+                <div class="num">{{ actor.passives.psionics }}</div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="tab" data-tab="stats" data-group="party">
+            <div class="table-row header">
+                <div class="button">
+                    <button class="btn-filter">
+                        <i class="fas fa-filter {{#ifEquals mode 'SHOW_ALL'}}inactive{{/ifEquals}}"></i>
+                        {{#ifEquals mode 'SHOW_VISIBLE' }}<i class="fas fa-eye"></i>{{/ifEquals}}
+                        {{#ifEquals mode 'SHOW_HIDDEN' }}<i class="fas fa-eye-slash"></i>{{/ifEquals}}
+                    </button>
+                </div>
+                <div class="text">Name</div>
+                <div class="num" title="Strength"><i class="fas fa-dumbbell"></i></div>
+                <div class="num" title="Dexterity"><i class="fas fa-running"></i></div>
+                <div class="num" title="Constitution"><i class="fas fa-bone"></i></div>
+                <div class="num" title="Intelligence"><i class="fas fa-brain"></i></div>
+                <div class="num" title="Wisdom"><i class="fas fa-graduation-cap"></i></div>
+                <div class="num" title="Charisma"><i class="fas fa-user"></i></div>
+            </div>
+
+            {{#each actors as | actor | }}
+            <div class="table-row">
+                <div class="button">
+                    <button class="btn-toggle-visibility" data-actor="{{actor.id }}">
+                        {{#if actor.isHidden }}<i class="value fas fa-eye-slash"></i>{{else}}<i
+                            class="value fas fa-eye"></i>{{/if}}
+                    </button>
+                </div>
+                <div class="text">{{ actor.shortestName }}</div>
+                <div class="num">{{ actor.strength.value }} / {{numberFormat actor.strength.save decimals=0 sign=true}}
+                </div>
+                <div class="num">{{ actor.dexterity.value }} / {{numberFormat actor.dexterity.save decimals=0
+                    sign=true}}</div>
+                <div class="num">{{ actor.constitution.value }} / {{numberFormat actor.constitution.save decimals=0
+                    sign=true}}</div>
+                <div class="num">{{ actor.intelligence.value }} / {{numberFormat actor.intelligence.save decimals=0
+                    sign=true}}</div>
+                <div class="num">{{ actor.wisdom.value }} / {{numberFormat actor.wisdom.save decimals=0 sign=true}}
+                </div>
+                <div class="num">{{ actor.charisma.value }} / {{numberFormat actor.charisma.save decimals=0 sign=true}}
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </section>
+</div>
