@@ -2,7 +2,7 @@
   "name": "pergasha-party-overview",
   "title": "Pergasha Party Overview",
   "description": "Provides an instant overview about vital stats of the players active in the current scene",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Michael Baglio",
   "minimumCoreVersion": "0.5.5",
   "compatibleCoreVersion": "0.7.9",
@@ -13,9 +13,21 @@
       "path": "lang/en.json"
     }
   ],
-  "systems": ["dnd5e", "pf2e", "wfrp4e", "swade", "pergashaFoundryvtt"],
-  "esmodules": ["./src/index.js"],
-  "styles": ["./style/module-settings.css", "./style/party-overview.css", "./style/module-settings.css"],
+  "systems": [
+    "dnd5e",
+    "pf2e",
+    "wfrp4e",
+    "swade",
+    "pergashaFoundryvtt"
+  ],
+  "esmodules": [
+    "./src/index.js"
+  ],
+  "styles": [
+    "./style/module-settings.css",
+    "./style/party-overview.css",
+    "./style/module-settings.css"
+  ],
   "packs": [],
   "url": "https://github.com/jesuisfrog/pergasha-party-overview",
   "bugs": "https://github.com/jesuisfrog/pergasha-party-overview/issues",
