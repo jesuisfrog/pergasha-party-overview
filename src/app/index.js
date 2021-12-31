@@ -18,9 +18,9 @@ class PartyOverviewApp extends Application {
 
 
   update() {
-    let actors = game.actors.entities
-      .filter(a => a.type !== "inventory")
+    let actors = game.actors
       .filter(a => a.hasPlayerOwner)
+      .filter(a => a.type !== "inventory")
       .map(playerActor => playerActor.getActiveTokens())
       .flat(1)
       .map(token => token.actor);
